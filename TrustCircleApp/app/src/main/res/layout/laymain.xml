@@ -10,7 +10,8 @@
     tools:context="wsu.csc5991.trustcircle.trustcircleapp.ActMain">
 
     <TextView
+        android:id="@+id/tvHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello>>World!" />
 </RelativeLayout>
