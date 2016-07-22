@@ -1,11 +1,17 @@
-package wsu.csc5991.trustcircle.trustcircleapp;
+package wsu.csc5991.trustcircle.trustcircleapp.data;
+
+/**
+ * Created by sasidhav on 7/21/16.
+ */
+
 
 import java.util.List;
 
 /**
- * Created by sasidhav on 7/17/16.
+ * Created by sasidhav on 7/15/16.
  */
 public class Circle {
+
     private int id;
     private int pin;
 
@@ -53,3 +59,4 @@ public class Circle {
         this.members = members;
     }
 }
+

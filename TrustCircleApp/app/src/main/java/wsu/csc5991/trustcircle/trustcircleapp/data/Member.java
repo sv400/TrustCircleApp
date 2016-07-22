@@ -1,18 +1,27 @@
-package wsu.csc5991.trustcircle.trustcircleapp;
+package wsu.csc5991.trustcircle.trustcircleapp.data;
+
+/**
+ * Created by sasidhav on 7/21/16.
+ */
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
+
+
 /**
- * Created by sasidhav on 7/17/16.
+ * Created by sasidhav on 7/15/16.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Member {
+
     private int id;
     private String firstName;
     private String lastName;
     private int pin;
     private int mobileNumber;
     private Circle circle;
+    private List<Event> events;
 
     public int getId() {
         return id;
@@ -61,4 +70,13 @@ public class Member {
     public void setCircle(Circle circle) {
         this.circle = circle;
     }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 }
+
