@@ -1,9 +1,4 @@
-package wsu.csc5991.trustcircle.trustcircleapp.data;
-
-/**
- * Created by sasidhav on 7/21/16.
- */
-
+package wsu.csc5991.trustcircle.trustcircle.vo;
 
 import java.util.List;
 
@@ -59,4 +54,3 @@ public class Circle {
         this.members = members;
     }
 }
-

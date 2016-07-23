@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="wsu.csc5991.trustcircle.trustcircleapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
@@ -9,13 +10,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActMain">
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActSignIn" />
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActJoinCircle" />
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActMemberSignUp" />
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActCircleSignUp" />
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActEditCircle" />
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActDeleteCircle" />
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActDisplayCircle" />
+        <activity android:name="wsu.csc5991.trustcircle.trustcircle.ActHelp" />
     </application>
-
 </manifest>

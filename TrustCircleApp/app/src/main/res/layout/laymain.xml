@@ -1,175 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:paddingBottom="@dimen/activity_vertical_margin"
-android:paddingLeft="@dimen/activity_horizontal_margin"
-android:paddingRight="@dimen/activity_horizontal_margin"
-android:paddingTop="@dimen/activity_vertical_margin"
-android:orientation="vertical"
-android:weightSum="1"
-tools:context="wsu.csc5991.trustcircle.trustcircleapp.ActMain">
-
-<LinearLayout
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:text="Mobile Number:"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="left"
-            android:layout_gravity="center"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="8dp" />
-
-        <EditText
-            android:id="@+id/etMobileNumber"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:background="@color/light_green"
-            android:gravity="right"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="8dp" />
-    </LinearLayout>
-
-
-<Button
-    android:onClick="getMemberInfo"
-    android:text="Get Info"
-    android:textAllCaps="false"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    android:gravity="center"
-    android:layout_gravity="center"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:layout_margin="8dp" />
-
-
-
-<!--
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--->
-<!--  GPS latitude row  -->
-<!--
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--->
-<LinearLayout
-    android:gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LayMain"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <TextView
-        android:text="FirstName:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="left"
-        android:layout_gravity="center"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_margin="8dp" />
-
-    <EditText
-        android:id="@+id/etFirstName"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:background="@color/light_green"
-        android:gravity="right"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_margin="8dp" />
-</LinearLayout>
-<!--
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--->
-<!--  GPS longitude row  -->
-<!--
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--->
-<LinearLayout
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <TextView
-        android:text="LastName:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="left"
-        android:layout_gravity="center"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_margin="8dp" />
-
-    <EditText
-        android:id="@+id/etLastName"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:background="@color/light_green"
-        android:gravity="right"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_margin="8dp" />
-</LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:text="Pin:"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="left"
-            android:layout_gravity="center"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="8dp" />
-
-        <EditText
-            android:id="@+id/etPin"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:background="@color/light_green"
-            android:gravity="right"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="8dp" />
-    </LinearLayout>
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
 
     <Button
-        android:onClick="registerMember"
-        android:text="Sign Up"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_margin="8dp" />
+        android:id="@+id/buttonSignIn"
+        android:text="SignIn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonJoinCircle"
+        android:text="Join Circle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonMemberSignUp"
+        android:text="Member SignUp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonCircleSignUp"
+        android:text="Circle SignUp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonEditCircle"
+        android:text="Edit Circle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonDeleteCircle"
+        android:text="Delete Circle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

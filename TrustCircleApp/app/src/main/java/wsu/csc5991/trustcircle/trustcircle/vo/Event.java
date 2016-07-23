@@ -1,7 +1,8 @@
-package wsu.csc5991.trustcircle.trustcircleapp.data;
+package wsu.csc5991.trustcircle.trustcircle.vo;
+
 
 /**
- * Created by sasidhav on 7/21/16.
+ * Created by sasidhav on 7/15/16.
  */
 public class Event {
 
