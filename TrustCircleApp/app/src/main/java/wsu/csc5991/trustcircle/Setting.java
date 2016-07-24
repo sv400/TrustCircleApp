@@ -1,8 +1,9 @@
-package wsu.csc5991.trustcircle.trustcircle;
+package wsu.csc5991.trustcircle;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by nimmy on 0022 22, July 2016.

@@ -1,4 +1,4 @@
-package wsu.csc5991.trustcircle.trustcircle;
+package wsu.csc5991.trustcircle;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,10 +13,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 
-import wsu.csc5991.trustcircle.trustcircle.vo.Circle;
-import wsu.csc5991.trustcircle.trustcircle.vo.Member;
-import wsu.csc5991.trustcircle.trustcircleapp.R;
-
+import wsu.csc5991.trustcircle.vo.Circle;
+import wsu.csc5991.trustcircle.vo.Member;
 
 public class ActCircleSignUp extends AppCompatActivity {
 
@@ -30,6 +28,13 @@ public class ActCircleSignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Define and show application icon
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setIcon(R.mipmap.ic_launcher);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+
         setContentView(R.layout.laycirclesignup);
         ((LinearLayout)findViewById(R.id.LayCircleSignUp)).setBackgroundColor(Setting.Shared.Data.backgroundColor);
 

@@ -1,4 +1,4 @@
-package wsu.csc5991.trustcircle.trustcircle;
+package wsu.csc5991.trustcircle;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,11 +12,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
-import wsu.csc5991.trustcircle.trustcircle.vo.Circle;
-import wsu.csc5991.trustcircle.trustcircle.vo.Member;
-import wsu.csc5991.trustcircle.trustcircleapp.R;
-
+import wsu.csc5991.trustcircle.vo.Circle;
+import wsu.csc5991.trustcircle.vo.Member;
 
 public class ActJoinCircle extends AppCompatActivity {
 
@@ -29,6 +29,13 @@ public class ActJoinCircle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Define and show application icon
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setIcon(R.mipmap.ic_launcher);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+
         setContentView(R.layout.layjoincircle);
         ((LinearLayout)findViewById(R.id.LayJoinCircle)).setBackgroundColor(Setting.Shared.Data.backgroundColor);
 
@@ -88,7 +95,9 @@ public class ActJoinCircle extends AppCompatActivity {
                 Member member = new Member();
                 member.setMobileNumber(Integer.parseInt(params[2]));
                 member.setPin(Integer.parseInt(params[3]));
-                circle.getMembers().add(member);
+                List<Member> members = new ArrayList<Member>();
+                members.add(member);
+                circle.setMembers(members);
 
                 String getCircleUrl = getResources().getString(R.string.rest_service_url) + "/circle/search/?name=" + params[0];
                 Circle storedCircle = restTemplate.getForObject(getCircleUrl, Circle.class);

@@ -1,4 +1,4 @@
-package wsu.csc5991.trustcircle.trustcircle.vo;
+package wsu.csc5991.trustcircle.vo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;

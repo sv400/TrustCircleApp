@@ -1,4 +1,4 @@
-package wsu.csc5991.trustcircle.trustcircle.vo;
+package wsu.csc5991.trustcircle.vo;
 
 import java.util.List;
 
