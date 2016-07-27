@@ -4,31 +4,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:orientation="vertical" >
 
-   <Button
-        android:id="@+id/buttonJoinCircle"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Join Circle" />
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- SignIn Mobile Number and Pin                        -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <EditText
+        style="@style/ETStyle"
+        android:id="@+id/etPhoneNumber"
+        android:hint="Mobile Number"
+        android:inputType="number">
+        <requestFocus/>
+    </EditText>
+
+    <EditText
+        style="@style/ETStyle"
+        android:id="@+id/etPin"
+        android:hint="Pin"
+        android:inputType="numberPassword"
+        android:layout_marginBottom="30dp"
+        />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- SignIn and SignUp Button                            -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
     <Button
-        android:id="@+id/buttonCircleSignUp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Circle SignUp" />
+        style="@style/BTNStyle"
+        android:id="@+id/btnSignIn"
+        android:text="Member SignIn"
+        />
 
     <Button
-        android:id="@+id/buttonEditCircle"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit Circle" />
-
-    <Button
-        android:id="@+id/buttonDeleteCircle"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Circle" />
-
+        style="@style/BTNStyle"
+        android:id="@+id/btnSignUp"
+        android:text="Member SignUp"
+        />
 </LinearLayout>

@@ -26,7 +26,7 @@ public class RecordEventTask extends AsyncTask<String[], Void, Void> {
             System.out.println(params[0]);
             String[] arr = params[0];
             System.out.println(arr[0]+"-- "+ arr[1] +" -- " +arr[2]+" -- " +arr[3]);
-            member.setMobileNumber(Integer.parseInt(arr[0]));
+            member.setMobileNumber(arr[0]);
             member.setPin(Integer.parseInt(arr[1]));
             Event event = new Event();
             event.setName("Location");

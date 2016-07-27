@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">TrustCircle</string>
     <!--<string name="rest_service_url">http://10.0.2.2:8080</string>-->
-    <string name="rest_service_url">http://192.168.1.156:8080</string>
+    <string name="rest_service_url">http://10.0.1.10:8080</string>
 
+    <string-array name="bg_colors">
+        <item>White</item>
+        <item>Yellow</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
 </resources>

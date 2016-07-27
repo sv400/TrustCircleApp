@@ -16,7 +16,10 @@ import java.net.URI;
 import wsu.csc5991.trustcircle.vo.Circle;
 import wsu.csc5991.trustcircle.vo.Member;
 
-public class ActCircleSignUp extends AppCompatActivity {
+/**
+ * Class to create a new circle by providing circle name and pin
+ */
+public class ActCircleSignUp extends ActBase {
 
     EditText editTextCircleName;
     EditText editTextCirclePassword;
@@ -25,18 +28,21 @@ public class ActCircleSignUp extends AppCompatActivity {
     EditText editTextPrimaryMemberPassword;
     Button buttonCreateCircle;
 
+    //----------------------------------------------------------------
+    // Validates the inputs
+    // If validation fails, display the error messages
+    // If validation succeeds, invoke rest service to create the circle
+    //----------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.laycirclesignup);
+        ((LinearLayout)findViewById(R.id.LayCircleSignUp)).setBackgroundColor(Util.Shared.Data.backgroundColor);
 
         // Define and show application icon
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.mipmap.ic_launcher);
         actionBar.setDisplayShowHomeEnabled(true);
-
-
-        setContentView(R.layout.laycirclesignup);
-        ((LinearLayout)findViewById(R.id.LayCircleSignUp)).setBackgroundColor(Setting.Shared.Data.backgroundColor);
 
         editTextCircleName = (EditText) findViewById(R.id.editTextCircleName);
         editTextCirclePassword = (EditText) findViewById(R.id.editTextCirclePassword);
@@ -44,6 +50,18 @@ public class ActCircleSignUp extends AppCompatActivity {
         editTextPrimaryMemberMobileNumber = (EditText) findViewById(R.id.editTextPrimaryMemberMobileNumber);
         editTextPrimaryMemberPassword = (EditText) findViewById(R.id.editTextPrimaryMemberPassword);
         buttonCreateCircle = (Button) findViewById(R.id.buttonCreateCircle);
+
+        Bundle extras = getIntent().getExtras();
+        System.out.println("EEEEEEEEEEEEEEE"+extras);
+        if(extras != null){
+            System.out.println("Inside ppppppppppp ");
+            editTextPrimaryMemberMobileNumber.setText(extras.getString("member_mobile_number"));
+            editTextPrimaryMemberMobileNumber.setEnabled(false);
+            editTextPrimaryMemberPassword.setEnabled(false);
+            editTextPrimaryMemberPassword.setText(String.valueOf(extras.getInt("member_pin")));
+        } else {
+            System.out.println("Failed to Get Extras");
+        }
 
         buttonCreateCircle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -86,6 +104,9 @@ public class ActCircleSignUp extends AppCompatActivity {
         });
     }
 
+    //----------------------------------------------------------------
+    // Invokes the rest service to create the circle
+    //----------------------------------------------------------------
     private class HttpRequestTask extends AsyncTask<String, Void, Boolean> {
 
         String errorMessage = null;
@@ -93,6 +114,7 @@ public class ActCircleSignUp extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... params) {
             Boolean output = false;
+
             try {
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -102,7 +124,7 @@ public class ActCircleSignUp extends AppCompatActivity {
                 circle.setPin(Integer.parseInt(params[1]));
 
                 Member member = new Member();
-                member.setMobileNumber(Integer.parseInt(params[2]));
+                member.setMobileNumber(params[2]);
                 member.setPin(Integer.parseInt(params[3]));
                 circle.setPrimaryMember(member);
 
@@ -117,11 +139,11 @@ public class ActCircleSignUp extends AppCompatActivity {
                         errorMessage = "Trust Circle creation failed!\nInvalid member pin, please enter the correct member pin.";
                     }
                 } else {
-                    errorMessage = "Trust Circle creation failed!\nMember not registered, please sign up the member first.";
+                    errorMessage = "Trust Circle creation failed!";
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                errorMessage = "Trust Circle creation failed!\nMember not registered, please sign up the member first.";
+                errorMessage = "Trust Circle creation failed!";
             }
             return output;
         }
@@ -129,10 +151,11 @@ public class ActCircleSignUp extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean output) {
             if (output) {
-                Setting.showDialogBox(ActCircleSignUp.this, "Trust Circle SignUp", "Trust Circle successfully created!");
+                Util.showDialogBox(ActCircleSignUp.this, "Trust Circle SignUp", "Trust Circle successfully created!");
+
             } else {
                 errorMessage = errorMessage != null ? errorMessage : "Trust Circle creation failed!";
-                Setting.showDialogBox(ActCircleSignUp.this, "Trust Circle SignUp", errorMessage);
+                Util.showDialogBox(ActCircleSignUp.this, "Trust Circle SignUp", errorMessage);
             }
         }
     }

@@ -1,5 +1,7 @@
 package wsu.csc5991.trustcircle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,7 +18,10 @@ import java.net.URI;
 
 import wsu.csc5991.trustcircle.vo.Member;
 
-public class ActMemberSignUp extends AppCompatActivity {
+/**
+ * Class to create a new member by providing member details
+ */
+public class ActMemberSignUp extends ActBase {
 
     EditText editTextMobileNumber;
     EditText editTextFirstName;
@@ -25,18 +30,21 @@ public class ActMemberSignUp extends AppCompatActivity {
     EditText editTextConfirmPassword;
     Button buttonCreateMember;
 
+    //----------------------------------------------------------------
+    // Validates the inputs
+    // If validation fails, display the error messages
+    // If validation succeeds, invoke rest service to create a member
+    //----------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.laymembersignup);
+        ((LinearLayout)findViewById(R.id.LayMemberSignUp)).setBackgroundColor(Util.Shared.Data.backgroundColor);
 
         // Define and show application icon
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.mipmap.ic_launcher);
         actionBar.setDisplayShowHomeEnabled(true);
-
-
-        setContentView(R.layout.laymembersignup);
-        ((LinearLayout)findViewById(R.id.LayMemberSignUp)).setBackgroundColor(Setting.Shared.Data.backgroundColor);
 
         editTextMobileNumber = (EditText) findViewById(R.id.editTextMobileNumber);
         editTextFirstName = (EditText) findViewById(R.id.editTextFirstName);
@@ -87,6 +95,9 @@ public class ActMemberSignUp extends AppCompatActivity {
         });
     }
 
+    //----------------------------------------------------------------
+    // Invokes the rest service to create a member
+    //----------------------------------------------------------------
     private class HttpRequestTask extends AsyncTask<String, Void, Member> {
         @Override
         protected Member doInBackground(String... params) {
@@ -99,7 +110,7 @@ public class ActMemberSignUp extends AppCompatActivity {
                 member = new Member();
                 member.setFirstName(params[0]);
                 member.setLastName(params[1]);
-                member.setMobileNumber(Integer.parseInt(params[2]));
+                member.setMobileNumber(params[2]);
                 member.setPin(Integer.parseInt(params[3]));
 
                 Boolean output = restTemplate.postForObject(new URI(url), member, Boolean.class);
@@ -113,18 +124,26 @@ public class ActMemberSignUp extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Member member) {
-            if (member != null &&  member.getMobileNumber() >0) {
-                Setting.showDialogBox(ActMemberSignUp.this, "Trust Circle Member SignUp", "Member successfully created!");
-                    Intent i = new Intent(getApplicationContext(), ActMain.class);
-                        i.putExtra("m_Id", member.getId());
-                        i.putExtra("m_Phone", member.getMobileNumber());
-                        i.putExtra("m_first_name", member.getFirstName());
-                        i.putExtra("m_last_name", member.getLastName());
-                        i.putExtra("m_pin", member.getPin());
-                        startActivity(i);
+        protected void onPostExecute(final Member member) {
+            if (member != null) {
+                AlertDialog alertDialog = new AlertDialog.Builder(ActMemberSignUp.this).create();
+                alertDialog.setTitle("Trust Circle Member SignUp");
+                alertDialog.setMessage("Member successfully created!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent i = new Intent(getApplicationContext(), ActCircleConfig.class);
+                            i.putExtra("member_mobile_number", member.getMobileNumber());
+                            i.putExtra("member_first_name", member.getFirstName());
+                            i.putExtra("member_last_name", member.getLastName());
+                            i.putExtra("member_pin", member.getPin());
+                            startActivity(i);
+                        }
+                    });
+                alertDialog.show();
             } else {
-                Setting.showDialogBox(ActMemberSignUp.this, "Trust Circle Member SignUp", "Member creation failed!");
+                Util.showDialogBox(ActMemberSignUp.this, "Trust Circle Member SignUp", "Member creation failed!");
             }
         }
     }
